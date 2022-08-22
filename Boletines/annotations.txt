@@ -1,0 +1,68 @@
+----------------------------------------------------------------------------------------------------------------
+FLEX POSICIONAMIENTO DE LOS ITEMS  (CSS)
+----------------------------------------------------------------------------------------------------------------
+Horizontalmente: Justify-content
+    flex-start --->Alinear elementos a la izquierda
+    flex-end --->Alinear elementos a la derecha
+    center --->Alinear elementosss al centro
+    space-between --->Espacio de entre elementos son iguales
+    space-around --->Espacio total dividido igualmente 
+
+Verticalmente: align-content
+    flex-start --->Alinear elementos a la izquierda
+    flex-end --->Alinear elementos a la derecha
+    center --->Alinear elementosss al centro
+    baseline --->Muestra elementos en la línea base del contenedor
+    stretch --->Elementos se estiran para ajustarse al contenedor
+    
+Dirreción de los elementos (ponerlos en orden, o reverso): flex-direction
+    row --->Elementos son colocados en la misma dirección del texto.
+    row-reverse --->Elementos son colocados en la dirección opuesta al texto.
+    column --->Elementos se colocan de arriba hacia abajo.
+    column-reverse --->Elementos se colocan de abajo hacia arriba.
+
+Cambiar el orden (numero de posición numero positivo o negativo): order
+
+Alinear un elemento determinado: Align-self.....debes posicionarte en el elemento mediante.yellow{}
+
+Ordernar elementos en diferntes o misma linea: flex-wrap
+    nowrap: Cada elemento se ajusta en una sola línea.
+    wrap: los elementos se envuelven alrededor de líneas adicionales.
+    wrap-reverse: Los elementos se envuelven alrededor de líneas adicionales en reversa.
+    
+Combinación flex-direction y flex-wrap: flex-flow acepta las dos combinaciones de flex separados de un espacio
+
+----------------------------------------------------------------------------------------------------------------
+POSICIONAMIENTO DE UN BLOQUE CON PRODIEDAD POSITION   (CSS)
+----------------------------------------------------------------------------------------------------------------
+La propiedad position permite mover un bloque de acuerdo a los siguientes valor:
+Position:
+    Static: no se mueve
+    Relative: desde la posición de inicial
+    Absolute: igual que fixed pero se ve afectado por el scroll
+    Fixed: se colocara el bloque de acuerdo al tamaño de la pantalla (monitor, viewport)
+    Sticky: afectado por el scroll pero con limite 
+esta propiedad funciona con top, bottom, left, right
+EJEMPLO:
+html haces un bloque <div></div>
+CSS
+.div{
+    background:red;
+    width: 200px;
+    height: 100px;
+    position: relative;
+    top: 100px;
+    right:200px;
+}
+
+----------------------------------------------------------------------------------------------------------------
+PSEUDO CLASES   (CSS)
+----------------------------------------------------------------------------------------------------------------
+Las pseudo clases de escriben en css de la siguiente forma:
+a:pseudoclase{
+}
+Tipo de pseudoclases:
+a:hover : Es cuando el usuario interactúa con un elemento con un dispositivo señalador, pero no necesariamente lo activa
+a:visited : indica si este link ha sido visitado anteriormente
+a:active : este estado se activa cuando el usuario presiona el boton, el link.
+a:focus : Este es la interación que tiene los elemntos cuando tabulas o son el foco.
