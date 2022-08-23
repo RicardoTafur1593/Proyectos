@@ -1,0 +1,19 @@
+/* console.log("Hola perros again"); */
+/* DOOM */
+/* Se declara variables con la propiedad LET */
+/* queryselector solo devuelve un solo elemento, y queryselectorALL devuelve los que cumplan con el criterio de busqueda */
+/* forEach recibe una función */
+
+let links = document.querySelectorAll("a");
+links.forEach(function(links){
+    console.log(links);
+})
+
+
+let celdas=document.querySelectorAll("td");
+
+celdas.forEach(function(td){
+    td.addEventListener("click",function(){
+        console.log(this);
+    })
+})

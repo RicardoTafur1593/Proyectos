@@ -91,3 +91,21 @@ MEDIA QUERIES-DISEÑO RESPONSIVO  (CSS)
 Son especificar una serie de propiedades que se utilizan siempre y cuando las condiciones se cumplan
 @media print{}: son para especificar propiedades para cuando se va imprimir
 @media (max-width:500px){} : son solo para pantallas de 500 de pixeles
+
+----------------------------------------------------------------------------------------------------------------
+Otros  (CSS)
+----------------------------------------------------------------------------------------------------------------
+<!-- crawlers, arañas, los scrappers son semantica de html -->
+    <style>
+        p{
+            color: red;
+        }
+        .red{
+            height: 200px;
+            width: 100px;
+            background-color: red;
+        }
+        #boton-pago{
+            background-color: yellow;
+        }
+    </style>

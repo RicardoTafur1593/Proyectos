@@ -1,0 +1,6 @@
+  <!--<button id="boton-pago">Pagar</button>
+    <div class="red texto-blanco">
+    </div>
+    <p>Hola mundo</p> -->
+
+    
