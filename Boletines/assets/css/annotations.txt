@@ -66,3 +66,28 @@ a:hover : Es cuando el usuario interactúa con un elemento con un dispositivo se
 a:visited : indica si este link ha sido visitado anteriormente
 a:active : este estado se activa cuando el usuario presiona el boton, el link.
 a:focus : Este es la interación que tiene los elemntos cuando tabulas o son el foco.
+
+----------------------------------------------------------------------------------------------------------------
+UNIDADES DE MEDIDA-DISEÑO RESPONSIVO  (CSS)
+----------------------------------------------------------------------------------------------------------------
+Und. Absolutas: el mismo valor sin importar el dispositivo que se use, la resolución, no se altera
+    Pixeles (px)
+    Centimetros (cm)
+    Milimetros (mm)
+    Picas (pc): unidad fraccional de las pulgadas
+    Puntos (pt): unidad fraccional de las pulgadas
+Und. Relativas: se ven afectadas por el tamaño de la pantalla, resolución, etc. (siempre utilizar estas unidades)
+    Porcentaje (%)
+    Ems (em): el valor del 1em = 12px
+    EXs (ex): cada 1ex = 10px
+    Rems (rem): relativa al tamaño del documento
+    viewport (wv): cada unidad 1% del ancho del viewport
+    vh: 1 % del alto del viewport
+    Vmn: equivalente al ancho o alto del viewport
+
+----------------------------------------------------------------------------------------------------------------
+MEDIA QUERIES-DISEÑO RESPONSIVO  (CSS)
+----------------------------------------------------------------------------------------------------------------
+Son especificar una serie de propiedades que se utilizan siempre y cuando las condiciones se cumplan
+@media print{}: son para especificar propiedades para cuando se va imprimir
+@media (max-width:500px){} : son solo para pantallas de 500 de pixeles
