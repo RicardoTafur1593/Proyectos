@@ -208,12 +208,12 @@ lenguajes.forEach(function(probando,indice,arreglo){
 
 //map, genera un nuevo arreglo a partir de utilizar el arreglo original como base
 //forma basica sin usar map
-let numeros=[2,3,5,1,34];
+/* let numeros=[2,3,5,1,34];
 let cuadrados=[];
 for (let i=0; i<numeros.length;i++){
     cuadrados[i]=cuadrados[i]*cuadrados[i];
 }
-console.log(cuadrados);
+console.log(cuadrados); */
 //usando map, recoradar que map no elimina el arreglo original
 let cuadrados=numeros.map(function(nuevo_numero){
     return nuevo_numero*nuevo_numero;
@@ -310,3 +310,237 @@ console.log(copia);
 // la palabra reservada new sirve para llamar y crear un nuevo objeto en una clase ya existente
 // la palabra reservada this hacer referencia por si sola a el objeto windonws
 // existen dos formas de ejecución de una función, inmediatamente o variadad. indiatamente mediante la palbra aplly, y variada la palabra 
+
+
+//PROTOTIPOS
+function Course(){}
+
+Course.prototype.inscribir=function(){
+console.log("hola");
+}
+
+let course=new Course(); 
+course.inscribir();
+console.log(course);
+
+//herencias en prototipos entre objetos...cadena de prototipos
+function Courses(title){this.title = title;}
+let javascripts = new Courses("Curso profesional de JavaScript");
+let ruby = Object.create(javascripts);
+console.log(ruby.title);
+/*
+En resumen:
+En javascript la herencia de prototipos funciona al incluir el prototype de una clase en la cadena de 
+prototipos de un objeto.
+Un objeto puede heredar de otro si lo usamos como primer argumento de Object.create
+Una funcion constructora puede heredar de otro si usamos el prototype de la clase base como primer 
+argumento de Object.create y asignamos ese resultado al prototype de la clase hija.
+*/
+
+//MÓDULOS
+//para un trabajo mas ordenado se separa en modulos
+//se usa export para exportar variables entre modulos
+export const nombres="ricardo";
+//se usa import para traer variables de otros modulos
+import {nombre_variable} from './modulo_dos.mjs'
+//nombre_archivo.mjs
+
+
+//GENERADORES E ITERADORES
+//los generadores e iteradores remplazan el uso de arreglos, se utiliza iteradores para procesar mayor cantidad
+//de datos y menos uso del sistema(mayor rendimiento)
+
+//cualquier objeto que implemente el metodo next y que retorne una propiedad value y done es un iterador
+let iterador={
+    currentValue:1,
+    next(){
+        let result={value:null,donde:false};
+        if(this.currentValue>0 && this.currentValue<=5){
+            result={value: this.currentValue, done:false};
+            this.currentValue +=1;
+        }else{
+            result={done:true};
+        }
+        return result;
+    }
+};
+/* console.log(iterador.next());
+console.log(iterador.next());
+console.log(iterador.next());
+console.log(iterador.next());
+setTimeout(()=>console.log(iterador.next()),5000) */
+
+//para imprimir la cantidad de veces
+let item=iterador.next();
+while(!item.done){
+    console.log(item.value);
+    item=iterador.next();
+}
+
+//el generador no necesitas hacerte cargo del objeto
+//yield hace parar la funcion para luego continuarla
+function* counter(){
+    console.log('estoy aqui');
+    yield 1;
+    console.log('ahora estoy aqui');
+    yield 2;
+}
+let generator=counter();
+//va imprimir todo lo que quieras
+console.log(generator.next());
+console.log(generator.next());
+console.log(generator.next());
+
+//reformando el generador con un for
+function* contador(){
+    for(var i=1;i<=5;i++){
+        yield i;
+    }
+}
+let generadores=contador();
+//llamando un generador a otro
+function* retornador(){
+    yield* contador();
+}
+let g=retornador();
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+//la libreria que usa generadores es: co.js
+
+
+//SIMBOLOS
+//para declarar un simbolo se usa el constructor symbol()
+//principal uso es el de clave para un objeto
+//los simbolos son inrepensables
+//symbol('aqui va una descripción y no es importante')
+let simbolo=Symbol('mi-simbolo');
+let obj={};
+obj[simbolo]=function(){
+  console.log('mi nombre es un simbolo');
+}
+obj[simbolo]();
+
+//ITERABLES Y SIMBOLOS
+let rango={
+    min:null,
+    max:null,
+    currentValue:null,
+    [Symbol.iterator](){
+      return this;
+    },
+    next(){
+      if (this.currentValue == null) this.currentValue = this.min;
+      let result ={};
+      if(this.currentValue>=this.min && this.currentValue<=this.max){
+        result={value:this.currentValue, done:false};
+        this.currentValue +=1;
+      }else{
+        result={done: true};
+      }
+      return result;
+    }
+  };
+  
+  rango.min=5;
+  rango.max=10;
+  for(a of rango){console.log(a)}
+
+//GENERADORES Y SIMBOLOS
+let rango2={
+    min:null,
+    max:null,
+    [Symbol.iterator](){
+        return this.generadores();
+    },
+    generadores:function* (){
+        for(var i=this.min; i<=this.max; i++){
+            yield i;
+        }
+    }
+}
+
+rango2.min=0,
+rango2.max=100;
+for(numeros of rango2){console.log(numeros)}
+
+
+//STRINGS
+//escaping
+console.log("ricardo dijo: \"hola\" ");
+//concatenar
+let a="hola";
+let b="mundo";
+console.log(a.concat(b));
+//interpolación, template literals
+let nombres="ricardo";
+let template=`hola ${nombres},¿como estas?`;
+console.log(template);
+//uso de padStart
+let mes="12";
+console.log(mes.padStart(2,"0"));
+//local compare
+//compara y da como resultado un numero, 0 si son igual, -1 si el primero es menor, 1 si el primero es mayor
+console.log("b".localeCompare("a"));
+//to upper,lowercase
+console.log("A".toLowerCase().localeCompare("a".toLowerCase()));
+//extracción de parte de una cadena
+let cadena="hola mundo";
+console.log(cadena.substring(0,4));
+console.log(cadena.slice(-5));
+//indexof
+//indexof devuelve el valor en el cual comienza la cadena y si no encuentra la cadena te devuelve un valor negativo
+//indexof va de comienzo al final de la cadena
+//lastindexof va de final a comienzo de la cadena
+//starsWith solo busca al comienzo de la cadena para encontrar la similutud con la busqueda
+//endWith solo busca al final de la cadena y si lo encuentra devuelve un true
+//incluides
+//incluide devuelve true o false si encuentra la cadena
+let cadenas="hola ricardo";
+console.log(cadenas.indexOf("ricardo"));
+//de cadena a un arreglo
+let reseña="estoy aprendiendo js con codigofacilito";
+let palabras=reseña.split(" ");
+console.log(palabras.length);//si pones length de devuelve la cantidad de palabras dentro de tu arreglo
+//join
+console.log(palabras.join(","));//devuelve la cadena orginal agregando coma despues de cada palabra
+//filtrar palabras
+let texto="estoy aprendiendo js con codigofacilito";
+console.log(filtroDeMarcas(texto));
+function filtroDeMarcas(string){
+    let marcas=["codigofacilito"];
+    let palabrasFiltradas = string.split(" ").map(
+        palabra=>{
+            return marcas.includes(palabra) ? "XXX":palabra;
+        }
+    );
+  return palabrasFiltradas.join(" ");
+}
+//METODOS ADICIONALES PARA LAS CADENAS
+//TRIM, remueve el espacio disponible o bien al comienzo o al final
+console.log("  hola  ".trimEnd());//"  hola"
+console.log("  hola  ".trimStart());//"hola  "
+console.log("  hola  ".trim());//"hola"
+//Length, devuelve la cantidad de elementos que tiene la cadena
+console.log("hola".length);//4
+//Repeat, retorna una nueva cadena con repetición de n veces de la cadena original
+console.log("hola".repeat(3));//holahola
+//Replace, retorna una nueva cadena con el replazo ejecutado
+console.log("hola mundo".replace("mundo","ricardo"));//hola ricardo
+//UNICODE
+//como convertir los caracteres a bit
+//basicamente unicode te devuelve en bits los caracteres, para que sea ejecutado en cualquier lenguaje
+
+//EXPRESIONES REGULARES
+//una expresion regular se escribe /hola/
+//existen dos grupos literales, especiales (meta caracteres)
+//los especiales se dividen: 
+//tipo caracter, las aserciones, agrupamientos/rangos, cuantificadores, unicode property escapes
+//pagina para ver este tema: regex101.com
+// * el axterisco representa todo los caracteres a continuacion
+//ejemplo: .{1,}\.com
+//mozila: developer.mozila.org 
+//agrupammientos en expresiones regulares
+/\d/
